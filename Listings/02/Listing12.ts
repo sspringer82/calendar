@@ -1,13 +1,21 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module, CacheInterceptor } from '@nestjs/common';
+import type { RedisClientOptions } from 'redis';
+import * as redisStore from 'cache-manager-redis-store';
+
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Appointment } from './appointments/Appointment';
 import { AppointmentsModule } from './appointments/appointments.module';
 
 @Module({
   imports: [
+    CacheModule.register<RedisClientOptions>({
+      store: redisStore,
+      host: 'localhost',
+      port: 6379,
+    }),
     ConfigModule.forRoot(),
     AppointmentsModule,
     TypeOrmModule.forRootAsync({
@@ -28,6 +36,12 @@ import { AppointmentsModule } from './appointments/appointments.module';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
+  ],
 })
 export class AppModule {}

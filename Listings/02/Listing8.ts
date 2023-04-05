@@ -5,25 +5,19 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './User';
 
-@Entity('appointments')
-export class Appointment {
+@Entity('users')
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  firstname: string;
 
   @Column()
-  start: number;
-
-  @Column()
-  end: number;
+  lastname: string;
 
   @ManyToMany(() => User)
   @JoinTable()
   invitees: User[];
 }
-
-export type CreateAppointment = Omit<Appointment, 'id'>;

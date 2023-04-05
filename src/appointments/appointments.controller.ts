@@ -27,7 +27,7 @@ export class AppointmentsController {
   }
 
   @Get()
-  getAll(): Promise<Appointment[]> {
+  async getAll(): Promise<Appointment[]> {
     return this.appointmentService.getAll();
   }
 

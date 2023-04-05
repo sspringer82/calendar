@@ -16,17 +16,14 @@ export class AppointmentsService {
 
   async getOne(id: number): Promise<Appointment> {
     try {
-      return await this.appointmentsRepository.findOneOrFail({
-        where: { id },
-        relations: { invitees: true },
-      });
+      return await this.appointmentsRepository.findOneByOrFail({ id });
     } catch {
       throw new NotFoundException();
     }
   }
 
   async getAll(): Promise<Appointment[]> {
-    return this.appointmentsRepository.find({ relations: { invitees: true } });
+    return this.appointmentsRepository.find();
   }
 
   async update(id: number, appointment: Appointment): Promise<Appointment> {

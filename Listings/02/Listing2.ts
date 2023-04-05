@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { User } from './User';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('appointments')
 export class Appointment {
@@ -20,10 +13,6 @@ export class Appointment {
 
   @Column()
   end: number;
-
-  @ManyToMany(() => User)
-  @JoinTable()
-  invitees: User[];
 }
 
 export type CreateAppointment = Omit<Appointment, 'id'>;
