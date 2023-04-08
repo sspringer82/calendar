@@ -3,17 +3,19 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Appointment } from './appointments/Appointment';
 import { AppointmentsModule } from './appointments/appointments.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    AuthModule,
+    ConfigModule.forRoot({ isGlobal: true }),
     AppointmentsModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => {
+      useFactory(configService: ConfigService) {
         return {
           type: 'mysql',
           host: configService.get('HOST', '127.0.0.1'),
@@ -26,8 +28,10 @@ import { AppointmentsModule } from './appointments/appointments.module';
         };
       },
     }),
+    UsersModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

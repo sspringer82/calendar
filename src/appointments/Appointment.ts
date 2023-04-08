@@ -3,9 +3,10 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './User';
+import { User } from '../users/User';
 
 @Entity('appointments')
 export class Appointment {
@@ -24,6 +25,9 @@ export class Appointment {
   @ManyToMany(() => User)
   @JoinTable()
   invitees: User[];
+
+  @ManyToOne(() => User)
+  owner: User;
 }
 
 export type CreateAppointment = Omit<Appointment, 'id'>;
