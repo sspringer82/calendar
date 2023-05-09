@@ -8,8 +8,6 @@ import {
 } from 'typeorm';
 import { User } from '../users/User';
 import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { MaxLength, MinLength } from 'class-validator';
-import { GreaterThan } from 'src/validators/greater-than';
 
 @Entity('appointments')
 export class Appointment {
@@ -20,8 +18,6 @@ export class Appointment {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @MinLength(2, { message: 'Title is too short' })
-  @MaxLength(25, { message: 'Title is too long' })
   @ApiProperty({
     example: 'Breakfast',
     description: 'The title of an appointment',
@@ -36,7 +32,6 @@ export class Appointment {
   @Column()
   start: number;
 
-  @GreaterThan('start', { message: 'End must be bigger than start' })
   @ApiProperty({
     example: 1682935200,
     description: 'The timestamp of the end of the appointment',
