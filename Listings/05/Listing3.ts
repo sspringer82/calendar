@@ -23,18 +23,7 @@ import { join } from 'path';
         }),
       ],
       inject: [ConfigService],
-      useFactory(configService: ConfigService) {
-        return {
-          type: 'mysql',
-          host: configService.get('HOST', '127.0.0.1'),
-          port: configService.get('PORT', 3306),
-          username: configService.get('USERNAME'),
-          password: configService.get('PASSWORD'),
-          database: configService.get('DATABASE', 'calendar'),
-          autoLoadEntities: true,
-          synchronize: true,
-        };
-      },
+      useFactory(configService: ConfigService) {...},
     }),
     UsersModule,
   ],

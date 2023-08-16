@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="module" src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+  <form id="login">
+    <div>
+      <label>Username: <input type="text" id="username" /></label>
+    </div>
+    <div>
+      <label>Passwort: <input type="password" id="password" /></label>
+    </div>
+    <div>
+      <button type="submit">login</button>
+    </div>
+  </form>
+
+  <div id="list" style="display: none;"></div>
+</body>
+</html>
