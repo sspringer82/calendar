@@ -10,7 +10,7 @@ export class AppointmentsService {
     @InjectRepository(Appointment)
     private readonly appointmentsRepository: Repository<Appointment>,
     private readonly appointmentsGateway: AppointmentsGateway,
-  ) { }
+  ) {}
 
   async create(newAppointment: CreateAppointment): Promise<Appointment> {
     const savedAppointment = await this.appointmentsRepository.save(
@@ -43,7 +43,9 @@ export class AppointmentsService {
     appointment: Appointment,
     userId: number,
   ): Promise<Appointment> {
-    await this.getOne(id, userId);
+    const app = await this.getOne(id, userId);
+    appointment = { ...app, ...appointment };
+    appointment.id = parseInt(appointment.id + '', 10);
     return this.appointmentsRepository.save(appointment);
   }
 

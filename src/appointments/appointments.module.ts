@@ -7,10 +7,16 @@ import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from 'src/users/users.module';
 import { AppointmentsGateway } from './appointments.gateway';
 import { WsAuthGuard } from 'src/auth/ws-auth.guard';
+import { AppointmentsResolver } from './Appointments.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Appointment]), JwtModule, UsersModule],
   controllers: [AppointmentsController],
-  providers: [AppointmentsService, AppointmentsGateway, WsAuthGuard],
+  providers: [
+    AppointmentsService,
+    AppointmentsGateway,
+    WsAuthGuard,
+    AppointmentsResolver,
+  ],
 })
-export class AppointmentsModule { }
+export class AppointmentsModule {}

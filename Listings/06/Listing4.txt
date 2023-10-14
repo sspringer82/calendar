@@ -1,0 +1,6 @@
+query {
+  getAllAppointments {
+    id
+    title
+  }
+}

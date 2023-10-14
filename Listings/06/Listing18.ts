@@ -5,20 +5,21 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
-import { Request } from 'express';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class GraphQLAuthGuard implements CanActivate {
   constructor(
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
-    console.log(request);
-    const token = this.getToken(request);
+    const ctx = GqlExecutionContext.create(context);
+    const request = ctx.getContext().req;
+
+    const token = request.headers.authorization?.split(' ')[1];
 
     if (!token) {
       throw new UnauthorizedException();
@@ -33,9 +34,5 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     return true;
-  }
-
-  private getToken(request: Request): string {
-    return request.headers.authorization?.split(' ')[1];
   }
 }

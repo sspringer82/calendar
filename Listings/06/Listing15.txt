@@ -1,0 +1,8 @@
+mutation {
+  createAppointment(newAppointment: {title:"sleep", start:123, end:456}) {
+    id
+    title
+    start
+    end
+  }
+}

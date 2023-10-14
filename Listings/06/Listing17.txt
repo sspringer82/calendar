@@ -1,0 +1,6 @@
+subscription {
+  newAppointment {
+    id
+    title
+  }
+}

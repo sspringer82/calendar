@@ -1,0 +1,53 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""User"""
+type User {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  username: String!
+  roles: String!
+}
+
+"""Appointment"""
+type Appointment {
+  id: ID!
+  title: String!
+  start: Int!
+  end: Int!
+  invitees: [User!]!
+}
+
+type Query {
+  getAllAppointments: [Appointment!]!
+  getOneAppointment(id: Int!): Appointment!
+}
+
+type Mutation {
+  createAppointment(newAppointment: NewAppointment!): Appointment!
+  updateAppointment(updatedAppointment: NewAppointment!): Appointment!
+  removeAppointment(id: Int!): Appointment!
+}
+
+input NewAppointment {
+  id: ID
+  title: String!
+  start: Int!
+  end: Int!
+  invitees: [CreateUser!]
+}
+
+"""User"""
+input CreateUser {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  username: String!
+  roles: String!
+}
+
+type Subscription {
+  newAppointment: Appointment!
+}

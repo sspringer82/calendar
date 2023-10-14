@@ -14,7 +14,7 @@ export class UsersService {
 
   constructor(
     @InjectRepository(User) private readonly usersRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async create(newUser: CreateUser): Promise<User> {
     if (await this.isDuplicateUsername(newUser.username)) {
@@ -24,7 +24,7 @@ export class UsersService {
     const newUserClone = structuredClone(newUser);
     delete newUserClone.repeatPassword;
     newUserClone.password = await this.hashPassword(newUserClone.password);
-
+    console.log(newUserClone);
     const createdUser = await this.usersRepository.save(newUserClone);
     delete createdUser.password;
     return createdUser;

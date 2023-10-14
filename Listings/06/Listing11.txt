@@ -1,0 +1,12 @@
+query {
+  getAllAppointments {
+    id
+    title
+    start
+    end
+    invitees {
+      firstname
+      lastname
+    }
+  }
+}

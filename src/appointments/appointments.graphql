@@ -1,0 +1,10 @@
+type Appointment {
+  id: ID!
+  title: String!
+  start: Int!
+  end: Int!
+}
+
+type Query {
+  appointments: [Appointment]
+}
