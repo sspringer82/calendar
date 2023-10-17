@@ -1,5 +1,5 @@
 import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql';
-import { CreateUser, User } from 'src/users/Users.model';
+import { CreateUser, User } from '../users/Users.model';
 
 @ObjectType({ description: 'Appointment' })
 export class Appointment {

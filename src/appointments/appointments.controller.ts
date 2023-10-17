@@ -13,10 +13,10 @@ import {
 } from '@nestjs/common';
 import { Appointment, CreateAppointment } from './Appointment';
 import { AppointmentsService } from './appointments.service';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { User } from 'src/users/User';
-import { Role, Roles } from 'src/roles/roles.decorator';
-import { RolesGuard } from 'src/roles/roles.guard';
+import { AuthGuard } from '../auth/auth.guard';
+import { User } from '../users/User';
+import { Role, Roles } from '../roles/roles.decorator';
+import { RolesGuard } from '../roles/roles.guard';
 import {
   ApiBearerAuth,
   ApiOperation,

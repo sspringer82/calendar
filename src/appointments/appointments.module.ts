@@ -4,9 +4,9 @@ import { Appointment } from './Appointment';
 import { AppointmentsController } from './appointments.controller';
 import { AppointmentsService } from './appointments.service';
 import { JwtModule } from '@nestjs/jwt';
-import { UsersModule } from 'src/users/users.module';
+import { UsersModule } from '../users/users.module';
 import { AppointmentsGateway } from './appointments.gateway';
-import { WsAuthGuard } from 'src/auth/ws-auth.guard';
+import { WsAuthGuard } from '../auth/ws-auth.guard';
 import { AppointmentsResolver } from './Appointments.resolver';
 
 @Module({

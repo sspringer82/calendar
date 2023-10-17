@@ -9,7 +9,7 @@ import {
 import { User } from '../users/User';
 import { ApiProperty, OmitType } from '@nestjs/swagger';
 import { MaxLength, MinLength } from 'class-validator';
-import { GreaterThan } from 'src/validators/greater-than';
+import { GreaterThan } from '../validators/greater-than';
 
 @Entity('appointments')
 export class Appointment {

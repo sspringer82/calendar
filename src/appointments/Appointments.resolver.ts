@@ -15,7 +15,7 @@ import {
   Appointment as AppointmentEntity,
 } from './Appointment';
 import { PubSub } from 'graphql-subscriptions';
-import { GraphQLAuthGuard } from 'src/auth/graphqlauth.guard';
+import { GraphQLAuthGuard } from '../auth/graphqlauth.guard';
 
 const pubSub = new PubSub();
 

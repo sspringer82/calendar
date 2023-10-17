@@ -16,8 +16,8 @@ import {
   ValidationPipe,
   forwardRef,
 } from '@nestjs/common';
-import { User } from 'src/users/User';
-import { WsAuthGuard } from 'src/auth/ws-auth.guard';
+import { User } from '../users/User';
+import { WsAuthGuard } from '../auth/ws-auth.guard';
 
 @UseGuards(WsAuthGuard)
 @WebSocketGateway()
